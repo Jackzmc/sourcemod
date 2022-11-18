@@ -42,6 +42,16 @@ void ClientMenuHandler::OnMenuSelect(IBaseMenu *menu, int client, unsigned int i
 
 	AutoMenuData *data = (AutoMenuData *)strtoul(info, NULL, 16);
 
+	if (data->handler->forward != NULL)
+	{
+		data->handler->forward->PushCell(client);
+		data->handler->forward->PushCell(CookieMenuAction_SelectOption);
+		data->handler->forward->PushCell(data->datavalue);
+		data->handler->forward->PushString(value);
+		data->handler->forward->PushCell(sizeof(message));
+		data->handler->forward->Execute(NULL);
+	}
+
 	if (!data->handler->isAutoMenu)
 	{
 		return;
@@ -125,7 +135,7 @@ void AutoMenuHandler::OnMenuSelect(SourceMod::IBaseMenu *menu, int client, unsig
 	if (data->handler->forward != NULL)
 	{
 		data->handler->forward->PushCell(client);
-		data->handler->forward->PushCell(CookieMenuAction_SelectOption);
+		data->handler->forward->PushCell(CookieMenuAction_ChangedOption);
 		data->handler->forward->PushCell(data->datavalue);
 		data->handler->forward->PushString(value);
 		data->handler->forward->PushCell(sizeof(message));
