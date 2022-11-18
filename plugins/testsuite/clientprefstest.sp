@@ -36,6 +36,7 @@ public void CookieSelected(int client, CookieMenuAction action, any info, char[]
 	else
 	{
 		LogMessage("SELECTED!");
+		PrintToChat(client, "Buffer is : %s", buffer);
 		
 		char value[100];
 		GetClientCookie(client, info, value, sizeof(value));
