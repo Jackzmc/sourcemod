@@ -72,6 +72,14 @@ enum CookieMenuAction
 	 * INPUT : Client index and any data if available.
 	 */
 	CookieMenuAction_SelectOption = 1
+
+	/**
+	 * A prefab menu's option has been selected and the cookie's value has changed
+	 *
+	 * INPUT : Client index and any data if available.
+	 * OUTPUT : Buffer of cookie's new value, maxlength of buffer
+	 */
+	CookieMenuAction_ChangedOption = 2
 };
 
 #define COOKIE_MAX_NAME_LENGTH 30 		/**< Maximum Cookie name length. */
